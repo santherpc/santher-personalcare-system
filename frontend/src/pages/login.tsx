@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -28,7 +29,7 @@ export default function Login() {
     } catch (error: any) {
       toast({
         title: "Acesso negado",
-        description: error.message || "Código de acesso inválido",
+        description: "Código de acesso incorreto. Verifique o código digitado.",
         variant: "destructive",
       });
     } finally {
@@ -70,7 +71,11 @@ export default function Login() {
               disabled={isLoading}
               data-testid="button-submit"
             >
-              {isLoading ? "Verificando..." : "Acessar"}
+              {isLoading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Acessar"
+              )}
             </Button>
           </form>
         </CardContent>

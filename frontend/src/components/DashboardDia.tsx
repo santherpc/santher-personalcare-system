@@ -44,6 +44,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useConfirmer } from "@/components/ui/confirmer";
+import { Loader2 } from "lucide-react";
 import ExcelJS from "exceljs";
 import { useState, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
@@ -185,13 +186,14 @@ export default function DashboardDia({
 
   const excluirRegistro = (id: number, grupo: 1 | 2) => {
     confirm(
-      () => {
-        if (grupo === 1) {
-          deleteGrupo1Mutation.mutate(id);
-        } else {
-          deleteGrupo2Mutation.mutate(id);
-        }
-      },
+      () =>
+        new Promise<void>((resolve) => {
+          if (grupo === 1) {
+            deleteGrupo1Mutation.mutate(id, { onSettled: () => resolve() });
+          } else {
+            deleteGrupo2Mutation.mutate(id, { onSettled: () => resolve() });
+          }
+        }),
       {
         title: "Excluir registro?",
         description:
@@ -1154,6 +1156,7 @@ export default function DashboardDia({
                     grupo={editandoGrupo}
                     valoresEditados={valoresEditados}
                     atualizarCampo={atualizarCampo}
+                    disabledInputs={updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending}
                   />
                 )}
               </div>
@@ -1167,20 +1170,21 @@ export default function DashboardDia({
                   >
                     Cancelar
                   </Button>
-                  <Button
-                    onClick={salvarEdicao}
-                    disabled={
-                      updateGrupo1Mutation.isPending ||
-                      updateGrupo2Mutation.isPending
-                    }
-                    data-testid="button-save-edit"
-                    className="flex-1"
-                  >
-                    {updateGrupo1Mutation.isPending ||
-                    updateGrupo2Mutation.isPending
-                      ? "Salvando..."
-                      : "Salvar"}
-                  </Button>
+              <Button
+                onClick={salvarEdicao}
+                disabled={
+                  updateGrupo1Mutation.isPending ||
+                  updateGrupo2Mutation.isPending
+                }
+                data-testid="button-save-edit"
+                className="flex-1"
+              >
+                {updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Salvar"
+                )}
+              </Button>
                 </div>
               </DrawerFooter>
             </div>
@@ -1198,6 +1202,7 @@ export default function DashboardDia({
                   grupo={editandoGrupo}
                   valoresEditados={valoresEditados}
                   atualizarCampo={atualizarCampo}
+                  disabledInputs={updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending}
                 />
               )}
             </div>
@@ -1217,10 +1222,11 @@ export default function DashboardDia({
                 }
                 data-testid="button-save-edit"
               >
-                {updateGrupo1Mutation.isPending ||
-                updateGrupo2Mutation.isPending
-                  ? "Salvando..."
-                  : "Salvar"}
+                {updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Salvar"
+                )}
               </Button>
             </DialogFooter>
           </DialogContent>

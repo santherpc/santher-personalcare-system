@@ -8,6 +8,7 @@ import {
 } from "@workspace/shared/schema";
 import { formatInTimeZone } from "date-fns-tz";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Form,
@@ -235,6 +236,7 @@ export default function FormularioGrupo2({
                         className="text-center font-mono h-8 text-sm"
                         data-testid={`input-${campo.name}`}
                         {...field}
+                        disabled={mutation.isPending}
                         onChange={(e) =>
                           campo.type === "text"
                             ? field.onChange(e.target.value)
@@ -256,7 +258,11 @@ export default function FormularioGrupo2({
               className="w-full md:w-auto px-8"
               data-testid="button-salvar-grupo2"
             >
-              {mutation.isPending ? "Salvando..." : "Salvar Coleta"}
+              {mutation.isPending ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Salvar Coleta"
+              )}
             </Button>
           </div>
         </form>

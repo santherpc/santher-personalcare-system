@@ -14,12 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -46,7 +40,7 @@ const LINHAS_GRUPO2 = ["L84", "L85"];
 const TODAS_LINHAS = [...LINHAS_GRUPO1, ...LINHAS_GRUPO2];
 
 export default function FormularioDeEntrada() {
-  const [dataColeta, setDataColeta] = useState<Date>(new Date());
+  const [dataColeta] = useState<Date>(new Date());
   const [linhaProducao, setLinhaProducao] = useState<string>("");
 
   const isGrupo1 = LINHAS_GRUPO1.includes(linhaProducao);

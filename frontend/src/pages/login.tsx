@@ -9,7 +9,7 @@ import { Lock } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 
 export default function Login() {
-  const [, setLocation] = useLocation();
+  useLocation();
   const [code, setCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();

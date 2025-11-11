@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useLocation } from "wouter";
 import { Home, LogOut, Droplet } from "lucide-react";
 import { Button } from "@/components/ui/button";

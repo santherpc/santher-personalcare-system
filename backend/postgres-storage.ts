@@ -7,8 +7,7 @@ import {
   type ColetaGrupo1, 
   type ColetaGrupo2, 
   type InsertColetaGrupo1, 
-  type InsertColetaGrupo2,
-  type AuthConfig 
+  type InsertColetaGrupo2
 } from '@workspace/shared/schema';
 import { IStorage } from './storage';
 import { getSupabase } from './supabase';

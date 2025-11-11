@@ -25,7 +25,6 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useConfirmer } from "@/components/ui/confirmer";
-import { Loader2 } from "lucide-react";
 import {
   Select,
   SelectContent,

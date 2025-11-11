@@ -3,7 +3,6 @@ import {
   type ColetaGrupo2, 
   type InsertColetaGrupo1, 
   type InsertColetaGrupo2,
-  type AuthConfig 
 } from "@workspace/shared/schema";
 
 export interface IStorage {

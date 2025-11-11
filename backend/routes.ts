@@ -20,8 +20,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const dbOk = !!process.env.DATABASE_URL;
       const supabaseOk = await checkSupabaseHealth().catch(() => false);
-      const code = await storage.getAccessCode();
-      res.json({ ok: dbOk && supabaseOk, db: dbOk, supabase: supabaseOk, accessCodePresent: !!code });
+      let accessCodePresent = false;
+      try {
+        const code = await storage.getAccessCode();
+        accessCodePresent = !!code;
+      } catch {
+        accessCodePresent = false;
+      }
+      res.json({ ok: dbOk && supabaseOk && accessCodePresent, db: dbOk, supabase: supabaseOk, accessCodePresent });
     } catch (err) {
       console.error('Healthcheck failed:', err);
       res.status(500).json({ ok: false, error: 'Connection failed' });

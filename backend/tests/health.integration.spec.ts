@@ -10,8 +10,8 @@ describe('Health and auth integration', () => {
   let server: any;
 
   beforeAll(async () => {
-    // Load env before importing any module that requires DATABASE_URL
-    dotenv.config({ path: path.resolve(import.meta.dirname, '..', '.env') });
+    // Load env from repo root before importing modules that require DATABASE_URL
+    dotenv.config({ path: path.resolve(import.meta.dirname, '../../', '.env') });
 
     app = express();
     app.use(session({

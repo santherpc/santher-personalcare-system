@@ -16,7 +16,7 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const { createServer: createViteServer } = await import("vite/dist/node/index.js");
+  const { createServer: createViteServer } = await import("vite");
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },

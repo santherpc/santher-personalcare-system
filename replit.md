@@ -52,9 +52,9 @@ The project uses npm workspaces to organize three main packages:
 - ESBuild for production bundling
 
 **Database Strategy:**
-- PostgreSQL database (supports Neon serverless)
-- Drizzle ORM provides type-safe database access
-- Dual storage implementation pattern: MemStorage for development, MySQLStorage (PostgreSQL) for production
+- PostgreSQL database via Supabase
+- Drizzle ORM provides type-safe database access with postgres-js driver
+- Dual storage implementation pattern: MemStorage for development, PostgreSQLStorage for production
 - Schema-first design with shared types between frontend and backend
 
 **Session Management:**
@@ -128,17 +128,19 @@ The project uses npm workspaces to organize three main packages:
 ## External Dependencies
 
 **Database:**
-- PostgreSQL (supports standard PostgreSQL or Neon serverless)
-- Connection via DATABASE_URL environment variable or individual DB_HOST, DB_PORT, DB_NAME, DB_PASSWORD variables
-- Drizzle ORM handles migrations and schema management
+- Supabase PostgreSQL database (fully managed PostgreSQL hosting)
+- Connection via DATABASE_URL environment variable pointing to Supabase
+- Drizzle ORM handles schema management and queries
+- Schema initialization via supabase-init.sql file (run in Supabase SQL Editor)
 
 **Third-party Services:**
-- None required - fully self-contained application
-- Optional: Neon Database for serverless PostgreSQL hosting
+- Supabase: PostgreSQL database hosting with built-in features
+  - Project URL: https://uryblvsxhsngypuhcrtd.supabase.co
+  - Includes authentication helpers and real-time capabilities (not currently used)
 
 **Key NPM Packages:**
 - drizzle-orm & drizzle-kit: Type-safe ORM and migration tool
-- postgres: PostgreSQL client for Node.js
+- postgres (postgres-js): PostgreSQL client for Node.js
 - express-session: Session management
 - exceljs: Excel file generation for data export
 - zod: Runtime type validation

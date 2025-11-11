@@ -1,4 +1,3 @@
-import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, real, integer, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -68,18 +67,64 @@ export const coletaGrupo2 = pgTable("coleta_grupo2", {
   matFix: real("mat_fix").notNull(),
 });
 
-export const insertColetaGrupo1Schema = createInsertSchema(coletaGrupo1).omit({
-  id: true,
-  createdAt: true,
+export const insertColetaGrupo1Schema = createInsertSchema(coletaGrupo1).pick({
+  dataColeta: true,
+  linhaProducao: true,
+  sku: true,
+  pesoSacolaVarpe: true,
+  parametroPainel: true,
+  acrisson: true,
+  velocidadeLinha: true,
+  coreAttach: true,
+  coreWrap: true,
+  surge: true,
+  cuffEnd: true,
+  bead: true,
+  legElastic: true,
+  cuffElastic: true,
+  temporary: true,
+  topsheet: true,
+  backsheet: true,
+  frontal: true,
+  earAttach: true,
+  pulpFix: true,
+  central: true,
+  release: true,
+  tapeOnBag: true,
+  filme1x1: true,
 });
 
-export const insertColetaGrupo2Schema = createInsertSchema(coletaGrupo2).omit({
-  id: true,
-  createdAt: true,
+export const insertColetaGrupo2Schema = createInsertSchema(coletaGrupo2).pick({
+  dataColeta: true,
+  linhaProducao: true,
+  sku: true,
+  pesoSacolaVarpe: true,
+  parametroPainel: true,
+  acrisson: true,
+  velocidadeLinha: true,
+  waistPacker: true,
+  isgElastic: true,
+  waistElastic: true,
+  isgSideSeal: true,
+  absorventFix: true,
+  outerEdge: true,
+  inner: true,
+  bead: true,
+  standingGather: true,
+  backflimFix: true,
+  osgSideSeal: true,
+  osgElastico: true,
+  nwSealContLateral: true,
+  nwSealIntCentRal: true,
+  outSideBackFlm: true,
+  topsheetFix: true,
+  coreWrap: true,
+  coreWrapSeal: true,
+  matFix: true,
 });
 
-export const insertAuthConfigSchema = createInsertSchema(authConfig).omit({
-  id: true,
+export const insertAuthConfigSchema = createInsertSchema(authConfig).pick({
+  accessCode: true,
 });
 
 export type InsertAuthConfig = z.infer<typeof insertAuthConfigSchema>;

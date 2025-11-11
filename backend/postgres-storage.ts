@@ -12,7 +12,7 @@ import {
 } from '@workspace/shared/schema';
 import { IStorage } from './storage';
 
-export class MySQLStorage implements IStorage {
+export class PostgreSQLStorage implements IStorage {
   async getAccessCode(): Promise<string> {
     const config = await db.select().from(authConfig).limit(1);
     if (config.length === 0) {
@@ -70,9 +70,10 @@ export class MySQLStorage implements IStorage {
         return null;
       }
 
-      const result = await db.insert(coletaGrupo1).values(insertColeta);
-      const insertId = Number(result[0].insertId);
-      return await this.getColetaGrupo1(insertId) || null;
+      const result = await db.insert(coletaGrupo1)
+        .values(insertColeta)
+        .returning();
+      return result[0] || null;
     } catch (error) {
       console.error('Error creating coleta grupo 1:', error);
       return null;
@@ -94,9 +95,10 @@ export class MySQLStorage implements IStorage {
         return null;
       }
 
-      const result = await db.insert(coletaGrupo2).values(insertColeta);
-      const insertId = Number(result[0].insertId);
-      return await this.getColetaGrupo2(insertId) || null;
+      const result = await db.insert(coletaGrupo2)
+        .values(insertColeta)
+        .returning();
+      return result[0] || null;
     } catch (error) {
       console.error('Error creating coleta grupo 2:', error);
       return null;

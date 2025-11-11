@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS coleta_grupo2 (
   isg_side_seal REAL NOT NULL,
   absorvent_fix REAL NOT NULL,
   outer_edge REAL NOT NULL,
-  inner REAL NOT NULL,
+  "inner" REAL NOT NULL,
   bead REAL NOT NULL,
   standing_gather REAL NOT NULL,
   backflim_fix REAL NOT NULL,

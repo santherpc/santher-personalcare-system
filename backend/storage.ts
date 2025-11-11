@@ -153,8 +153,8 @@ export class MemStorage implements IStorage {
   }
 }
 
-import { MySQLStorage } from './mysql-storage';
+import { PostgreSQLStorage } from './postgres-storage';
 
 export const storage: IStorage = process.env.DATABASE_URL 
-  ? new MySQLStorage() 
+  ? new PostgreSQLStorage() 
   : new MemStorage();

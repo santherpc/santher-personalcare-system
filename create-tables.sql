@@ -67,4 +67,4 @@ CREATE TABLE IF NOT EXISTS "coleta_grupo2" (
 );
 
 -- Insert a default access code (you can change this later)
-INSERT INTO "auth_config" ("id", "access_code") VALUES (1, '1234') ON CONFLICT ("id") DO NOTHING;
+-- Removed insecure seed. Configure access_code via secured migration or admin interface.

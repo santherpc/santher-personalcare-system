@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertColetaGrupo1Schema, insertColetaGrupo2Schema } from "@workspace/shared/schema";
 import { z } from "zod";
 import { formatInTimeZone } from "date-fns-tz";
+import { checkSupabaseHealth } from './supabase';
 
 const requireAuth = (req: Request, res: Response, next: NextFunction) => {
   if (req.session.authenticated) {
@@ -14,6 +15,18 @@ const requireAuth = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Healthcheck da conexão com banco/Supabase
+  app.get('/api/health', async (_req, res) => {
+    try {
+      const dbOk = !!process.env.DATABASE_URL;
+      const supabaseOk = await checkSupabaseHealth().catch(() => false);
+      const code = await storage.getAccessCode();
+      res.json({ ok: dbOk && supabaseOk, db: dbOk, supabase: supabaseOk, accessCodePresent: !!code });
+    } catch (err) {
+      console.error('Healthcheck failed:', err);
+      res.status(500).json({ ok: false, error: 'Connection failed' });
+    }
+  });
   // POST /api/auth/verify - Verifica o código de acesso
   app.post("/api/auth/verify", async (req, res) => {
     try {

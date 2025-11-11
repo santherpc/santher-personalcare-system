@@ -8,9 +8,7 @@ CREATE TABLE IF NOT EXISTS auth_config (
 );
 
 -- Inserir código de acesso padrão
-INSERT INTO auth_config (id, access_code) 
-VALUES (1, 'UFHPC@2025')
-ON CONFLICT (id) DO NOTHING;
+-- Removed insecure seed. Configure access_code via secured migration or admin interface.
 
 -- Tabela de coleta do Grupo 1
 CREATE TABLE IF NOT EXISTS coleta_grupo1 (

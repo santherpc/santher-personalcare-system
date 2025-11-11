@@ -11,20 +11,34 @@ import {
   type AuthConfig 
 } from '@workspace/shared/schema';
 import { IStorage } from './storage';
+import { getSupabase } from './supabase';
 
 export class PostgreSQLStorage implements IStorage {
   async getAccessCode(): Promise<string> {
     const config = await db.select().from(authConfig).limit(1);
-    if (config.length === 0) {
-      await db.insert(authConfig).values({ id: 1, accessCode: 'UFHPC@2025' });
-      return 'UFHPC@2025';
+    if (config.length === 0 || !config[0]?.accessCode) {
+      throw new Error('Access code not configured in database');
     }
     return config[0].accessCode;
   }
 
   async verifyAccessCode(code: string): Promise<boolean> {
-    const storedCode = await this.getAccessCode();
-    return code === storedCode;
+    // Consultar via Supabase PostgREST para garantir consistência com políticas RLS
+    const { data, error } = await getSupabase()
+      .from('auth_config')
+      .select('access_code')
+      .limit(1)
+      .maybeSingle();
+
+    if (error) {
+      console.error('Supabase verification error:', error.message);
+      return false;
+    }
+
+    const storedCode = data?.access_code;
+    if (!storedCode) return false;
+    // Ignorar espaços acidentais na comparação
+    return code.trim() === String(storedCode).trim();
   }
 
   async getColetasGrupo1(): Promise<ColetaGrupo1[]> {

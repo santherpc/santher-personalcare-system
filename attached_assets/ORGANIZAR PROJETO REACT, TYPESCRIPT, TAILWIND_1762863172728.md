@@ -1,0 +1,154 @@
+# Prompt para Reorganização Completa do Projeto React/Node.js
+
+## Contexto
+
+Tenho um projeto React com Node.js, TypeScript e Tailwind CSS que está completamente desorganizado na raiz, conforme mostrado na imagem. Todos os arquivos estão misturados sem uma estrutura adequada de pastas.
+
+## Objetivo Principal
+
+Preciso de uma reorganização completa e profissional do projeto seguindo as melhores práticas de estruturação de código.
+
+## Solicitações Específicas
+
+### 1\. REESTRUTURAÇÃO COMPLETA DE PASTAS
+
+Reorganize todo o projeto criando uma estrutura moderna e profissional com:
+
+- Uma pasta dedicada para o **backend** contendo toda a lógica do servidor  
+- Uma pasta dedicada para o **frontend** contendo toda a interface React  
+- Uma pasta **shared** para código compartilhado entre frontend e backend  
+- Pastas auxiliares para documentação, scripts e configurações globais  
+- Estruture cada pasta (backend/frontend) com subpastas organizadas por responsabilidade (controllers, components, services, utils, types, etc.)
+
+### 2\. LIMPEZA E EXCLUSÃO DE ARQUIVOS
+
+Identifique e remova completamente:
+
+- A pasta **node\_modules** atual (será recriada posteriormente)  
+- Todos os arquivos de build e cache antigos  
+- Arquivos temporários e de log  
+- Arquivos duplicados ou desnecessários  
+- Configurações obsoletas ou não utilizadas  
+- Qualquer arquivo que não seja essencial para o funcionamento do projeto
+
+### 3\. MIGRAÇÃO INTELIGENTE DE ARQUIVOS
+
+Analise cada arquivo existente na raiz e mova-o para sua localização apropriada:
+
+- Arquivos de configuração do React/Vite/Tailwind para a pasta frontend  
+- Arquivos de configuração do servidor/backend para a pasta backend  
+- Arquivos de banco de dados (como o supabase\_setup.sql) para uma estrutura adequada no backend  
+- Arquivo .env para o local correto considerando segurança  
+- Código fonte para as respectivas pastas organizadas por funcionalidade
+
+### 4\. CONFIGURAÇÃO DE WORKSPACE
+
+Configure o projeto como um **npm workspace** onde:
+
+- A pasta raiz gerencie ambos os projetos (frontend e backend), ou seja, o “npm run dev” deve apenas ocorrer na pasta raiz e iniciar frontend e backend automaticamente.  
+- Cada subprojeto (frontend/backend) tenha seu próprio package.json independente  
+- Seja possível executar comandos tanto individualmente quanto em conjunto  
+- As dependências sejam separadas corretamente entre frontend e backend
+
+### 5\. SEPARAÇÃO INTELIGENTE DE DEPENDÊNCIAS
+
+Analise o package.json atual e:
+
+- Separe as dependências do React/Tailwind/Vite para o frontend  
+- Mova as dependências do servidor/banco/API para o backend  
+- Mantenha apenas dependências de desenvolvimento global na raiz  
+- Garanta que cada projeto tenha apenas as dependências necessárias
+
+### 6\. CONFIGURAÇÃO DO TYPESCRIPT
+
+Crie configurações TypeScript específicas:
+
+- TSConfig otimizado para o ambiente React no frontend  
+- TSConfig otimizado para Node.js no backend  
+- Configuração de path mapping para facilitar imports  
+- Tipos compartilhados na pasta shared quando aplicável
+
+### 7\. ATUALIZAÇÃO DE IMPORTS E REFERÊNCIAS
+
+Corrija todos os imports quebrados resultantes da reorganização:
+
+- Atualize caminhos relativos para absolutos onde possível  
+- Configure aliases para facilitar importações  
+- Garanta que todas as referências entre arquivos funcionem corretamente  
+- Implemente barrel exports onde fizer sentido
+
+### 8\. CONFIGURAÇÃO DE FERRAMENTAS DE DESENVOLVIMENTO
+
+Configure adequadamente:
+
+- Arquivos .gitignore específicos para cada ambiente  
+- Configurações de ESLint/Prettier adaptadas para frontend e backend  
+- Scripts npm para desenvolvimento, build e deploy  
+- Configurações de ambiente (.env) organizadas e seguras
+
+### 9\. DOCUMENTAÇÃO DA NOVA ESTRUTURA
+
+Crie ou atualize:
+
+- README.md explicando a nova estrutura  
+- Documentação de como executar o projeto  
+- Explicação dos scripts disponíveis  
+- Guia de desenvolvimento para novos membros da equipe
+
+## Requisitos Específicos de Qualidade
+
+### Segurança
+
+- Garanta que arquivos sensíveis (.env) não sejam expostos  
+- Configure .gitignore adequadamente  
+- Mantenha separação clara entre configurações de desenvolvimento e produção
+
+### Performance
+
+- Otimize a estrutura para builds rápidos  
+- Separe dependências de desenvolvimento das de produção  
+- Configure tree-shaking adequadamente
+
+### Manutenibilidade
+
+- Organize código por funcionalidade, não por tipo de arquivo  
+- Implemente naming conventions consistentes  
+- Facilite a localização de arquivos e funcionalidades
+
+### Escalabilidade
+
+- Estruture pensando no crescimento do projeto  
+- Permita fácil adição de novas funcionalidades  
+- Mantenha baixo acoplamento entre módulos
+
+## Resultado Esperado Final
+
+Após a reorganização, espero:
+
+- Um projeto completamente limpo e organizado  
+- Estrutura de pastas profissional e intuitiva  
+- Separação clara entre frontend e backend  
+- Todos os arquivos em seus locais apropriados  
+- Zero arquivos desnecessários ou duplicados  
+- Configurações otimizadas para cada ambiente  
+- Scripts funcionais para desenvolvimento e produção  
+- Projeto pronto para desenvolvimento em equipe  
+- Facilidade para onboarding de novos desenvolvedores
+
+## Entregáveis Solicitados
+
+Forneça ao final:
+
+1. **Relatório detalhado** de todas as mudanças realizadas  
+2. **Lista completa** de arquivos movidos (origem → destino)  
+3. **Lista de arquivos deletados** com justificativa para cada exclusão  
+4. **Mapeamento de dependências** migradas entre os package.json  
+5. **Guia de comandos** para instalar e executar o projeto reorganizado  
+6. **Checklist de verificação** para validar se tudo está funcionando corretamente
+
+## Observações Importantes
+
+- Preserve TODO o código funcional existente  
+- Teste cada etapa antes de prosseguir para a próxima  
+- Garanta que nenhuma funcionalidade seja perdida no processo
+

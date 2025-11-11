@@ -1,0 +1,14 @@
+{
+  "name": "@workspace/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./schema": "./schema.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.39.1",
+    "drizzle-zod": "^0.7.0",
+    "zod": "^3.24.2"
+  }
+}

@@ -1,7 +1,7 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertColetaGrupo1Schema, insertColetaGrupo2Schema } from "@shared/schema";
+import { insertColetaGrupo1Schema, insertColetaGrupo2Schema } from "@workspace/shared/schema";
 import { z } from "zod";
 import { formatInTimeZone } from "date-fns-tz";
 

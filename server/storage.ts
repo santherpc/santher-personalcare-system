@@ -4,7 +4,7 @@ import {
   type InsertColetaGrupo1, 
   type InsertColetaGrupo2,
   type AuthConfig 
-} from "@shared/schema";
+} from "@workspace/shared/schema";
 
 export interface IStorage {
   getAccessCode(): Promise<string>;

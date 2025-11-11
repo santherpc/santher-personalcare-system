@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 import FormularioGrupo1 from "./FormularioGrupo1";
 import FormularioGrupo2 from "./FormularioGrupo2";
 import { useQuery } from "@tanstack/react-query";
-import { type ColetaGrupo1, type ColetaGrupo2 } from "@shared/schema";
+import { type ColetaGrupo1, type ColetaGrupo2 } from "@workspace/shared/schema";
 
 const LINHAS_GRUPO1 = [
   "L90",

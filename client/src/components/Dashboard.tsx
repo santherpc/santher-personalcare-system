@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { type ColetaGrupo1, type ColetaGrupo2 } from "@shared/schema";
+import { type ColetaGrupo1, type ColetaGrupo2 } from "@workspace/shared/schema";
 import {
   format,
   parseISO,

@@ -9,7 +9,7 @@ import {
   type InsertColetaGrupo1, 
   type InsertColetaGrupo2,
   type AuthConfig 
-} from '@shared/schema';
+} from '@workspace/shared/schema';
 import { IStorage } from './storage';
 
 export class MySQLStorage implements IStorage {

@@ -29,7 +29,7 @@ import {
   DrawerFooter,
 } from "@/components/ui/drawer";
 import { FormularioEdicaoGrupo } from "./DashboardDia/FormularioEdicaoGrupo";
-import { type ColetaGrupo1, type ColetaGrupo2 } from "@shared/schema";
+import { type ColetaGrupo1, type ColetaGrupo2 } from "@workspace/shared/schema";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import {

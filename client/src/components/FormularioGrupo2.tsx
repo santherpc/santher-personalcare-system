@@ -5,7 +5,7 @@ import {
   insertColetaGrupo2Schema,
   type InsertColetaGrupo2,
   type ColetaGrupo2,
-} from "@shared/schema";
+} from "@workspace/shared/schema";
 import { formatInTimeZone } from "date-fns-tz";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";

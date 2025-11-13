@@ -105,7 +105,11 @@ export default function Dashboard() {
 
   const excluirDia = (data: string, event: React.MouseEvent) => {
     event.stopPropagation();
-    confirm(() => deleteDiaMutation.mutate(data), {
+    confirm(() => new Promise<void>((resolve) => {
+      deleteDiaMutation.mutate(data, {
+        onSettled: () => resolve(),
+      });
+    }), {
       title: "Excluir todos os registros do dia?",
       description: `Tem certeza que deseja excluir TODOS os registros do dia ${format(parseISO(data), "dd/MM/yyyy", { locale: ptBR })}? Esta ação não pode ser desfeita.`,
     });

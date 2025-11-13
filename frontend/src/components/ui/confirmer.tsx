@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -9,15 +8,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ConfirmerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onConfirm: () => void;
+  onConfirm: () => Promise<void> | void;
   title?: string;
   description?: string;
   confirmText?: string;
   cancelText?: string;
+  loading?: boolean;
 }
 
 export function Confirmer({
@@ -28,17 +30,30 @@ export function Confirmer({
   description = "Esta ação não pode ser desfeita.",
   confirmText = "Confirmar",
   cancelText = "Cancelar",
+  loading = false,
 }: ConfirmerProps) {
   return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
+    <AlertDialog
+      open={open}
+      onOpenChange={(next) => {
+        // Impedir que o diálogo feche enquanto estiver carregando
+        if (!loading) onOpenChange(next);
+      }}
+    >
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{cancelText}</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>{confirmText}</AlertDialogAction>
+          <AlertDialogCancel disabled={loading}>{cancelText}</AlertDialogCancel>
+          <Button onClick={onConfirm} disabled={loading}>
+            {loading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              confirmText
+            )}
+          </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -50,13 +65,14 @@ export function useConfirmer() {
   const [config, setConfig] = React.useState<{
     title?: string;
     description?: string;
-    onConfirm: () => void;
+    onConfirm: () => Promise<void> | void;
   }>({
     onConfirm: () => {},
   });
+  const [loading, setLoading] = React.useState(false);
 
   const confirm = (
-    onConfirm: () => void,
+    onConfirm: () => Promise<void> | void,
     options?: { title?: string; description?: string }
   ) => {
     setConfig({
@@ -67,9 +83,14 @@ export function useConfirmer() {
     setOpen(true);
   };
 
-  const handleConfirm = () => {
-    config.onConfirm();
-    setOpen(false);
+  const handleConfirm = async () => {
+    try {
+      setLoading(true);
+      await Promise.resolve(config.onConfirm());
+      setOpen(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
@@ -81,6 +102,7 @@ export function useConfirmer() {
         onConfirm={handleConfirm}
         title={config.title}
         description={config.description}
+        loading={loading}
       />
     ),
   };

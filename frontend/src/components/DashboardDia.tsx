@@ -1,7 +1,6 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -32,23 +31,15 @@ import { FormularioEdicaoGrupo } from "./DashboardDia/FormularioEdicaoGrupo";
 import { type ColetaGrupo1, type ColetaGrupo2 } from "@workspace/shared/schema";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import {
-  ArrowLeft,
-  Download,
-  Trash2,
-  Edit,
-  Check,
-  X,
-  Plus,
-} from "lucide-react";
+import { ArrowLeft, Download, Trash2, Edit } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useConfirmer } from "@/components/ui/confirmer";
+import { Loader2 } from "lucide-react";
 import ExcelJS from "exceljs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Input } from "@/components/ui/input";
 
 interface DashboardDiaProps {
   data: string;
@@ -185,13 +176,14 @@ export default function DashboardDia({
 
   const excluirRegistro = (id: number, grupo: 1 | 2) => {
     confirm(
-      () => {
-        if (grupo === 1) {
-          deleteGrupo1Mutation.mutate(id);
-        } else {
-          deleteGrupo2Mutation.mutate(id);
-        }
-      },
+      () =>
+        new Promise<void>((resolve) => {
+          if (grupo === 1) {
+            deleteGrupo1Mutation.mutate(id, { onSettled: () => resolve() });
+          } else {
+            deleteGrupo2Mutation.mutate(id, { onSettled: () => resolve() });
+          }
+        }),
       {
         title: "Excluir registro?",
         description:
@@ -1154,6 +1146,7 @@ export default function DashboardDia({
                     grupo={editandoGrupo}
                     valoresEditados={valoresEditados}
                     atualizarCampo={atualizarCampo}
+                    disabledInputs={updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending}
                   />
                 )}
               </div>
@@ -1167,20 +1160,21 @@ export default function DashboardDia({
                   >
                     Cancelar
                   </Button>
-                  <Button
-                    onClick={salvarEdicao}
-                    disabled={
-                      updateGrupo1Mutation.isPending ||
-                      updateGrupo2Mutation.isPending
-                    }
-                    data-testid="button-save-edit"
-                    className="flex-1"
-                  >
-                    {updateGrupo1Mutation.isPending ||
-                    updateGrupo2Mutation.isPending
-                      ? "Salvando..."
-                      : "Salvar"}
-                  </Button>
+              <Button
+                onClick={salvarEdicao}
+                disabled={
+                  updateGrupo1Mutation.isPending ||
+                  updateGrupo2Mutation.isPending
+                }
+                data-testid="button-save-edit"
+                className="flex-1"
+              >
+                {updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Salvar"
+                )}
+              </Button>
                 </div>
               </DrawerFooter>
             </div>
@@ -1198,6 +1192,7 @@ export default function DashboardDia({
                   grupo={editandoGrupo}
                   valoresEditados={valoresEditados}
                   atualizarCampo={atualizarCampo}
+                  disabledInputs={updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending}
                 />
               )}
             </div>
@@ -1217,10 +1212,11 @@ export default function DashboardDia({
                 }
                 data-testid="button-save-edit"
               >
-                {updateGrupo1Mutation.isPending ||
-                updateGrupo2Mutation.isPending
-                  ? "Salvando..."
-                  : "Salvar"}
+                {updateGrupo1Mutation.isPending || updateGrupo2Mutation.isPending ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "Salvar"
+                )}
               </Button>
             </DialogFooter>
           </DialogContent>

@@ -4,9 +4,10 @@ interface FormularioEdicaoGrupoProps {
   grupo: 1 | 2;
   valoresEditados: any;
   atualizarCampo: (campo: string, valor: any) => void;
+  disabledInputs?: boolean;
 }
 
-export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }: FormularioEdicaoGrupoProps) {
+export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo, disabledInputs = false }: FormularioEdicaoGrupoProps) {
   if (grupo === 1) {
     return (
       <div className="grid grid-cols-2 gap-4">
@@ -16,6 +17,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             type="text"
             value={valoresEditados.sku || ""}
             onChange={(e) => atualizarCampo("sku", e.target.value)}
+            disabled={disabledInputs}
             data-testid="input-edit-sku"
           />
         </div>
@@ -26,6 +28,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.pesoSacolaVarpe || 0}
             onChange={(e) => atualizarCampo("pesoSacolaVarpe", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-pesoSacolaVarpe"
           />
         </div>
@@ -36,6 +39,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.parametroPainel || 0}
             onChange={(e) => atualizarCampo("parametroPainel", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-parametroPainel"
           />
         </div>
@@ -46,6 +50,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.acrisson || 0}
             onChange={(e) => atualizarCampo("acrisson", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-acrisson"
           />
         </div>
@@ -56,6 +61,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.velocidadeLinha || 0}
             onChange={(e) => atualizarCampo("velocidadeLinha", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-velocidadeLinha"
           />
         </div>
@@ -66,6 +72,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.coreAttach || 0}
             onChange={(e) => atualizarCampo("coreAttach", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-coreAttach"
           />
         </div>
@@ -76,6 +83,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.coreWrap || 0}
             onChange={(e) => atualizarCampo("coreWrap", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-coreWrap"
           />
         </div>
@@ -86,6 +94,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.surge || 0}
             onChange={(e) => atualizarCampo("surge", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-surge"
           />
         </div>
@@ -96,6 +105,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.cuffEnd || 0}
             onChange={(e) => atualizarCampo("cuffEnd", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-cuffEnd"
           />
         </div>
@@ -106,6 +116,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.frontal || 0}
             onChange={(e) => atualizarCampo("frontal", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-frontal"
           />
         </div>
@@ -116,6 +127,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.earAttach || 0}
             onChange={(e) => atualizarCampo("earAttach", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-earAttach"
           />
         </div>
@@ -126,6 +138,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.pulpFix || 0}
             onChange={(e) => atualizarCampo("pulpFix", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-pulpFix"
           />
         </div>
@@ -136,6 +149,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.central || 0}
             onChange={(e) => atualizarCampo("central", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-central"
           />
         </div>
@@ -146,6 +160,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.release || 0}
             onChange={(e) => atualizarCampo("release", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-release"
           />
         </div>
@@ -156,6 +171,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.tapeOnBag || 0}
             onChange={(e) => atualizarCampo("tapeOnBag", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-tapeOnBag"
           />
         </div>
@@ -166,6 +182,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
             step="0.01"
             value={valoresEditados.filme1x1 || 0}
             onChange={(e) => atualizarCampo("filme1x1", parseFloat(e.target.value) || 0)}
+            disabled={disabledInputs}
             data-testid="input-edit-filme1x1"
           />
         </div>
@@ -181,6 +198,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           type="text"
           value={valoresEditados.sku || ""}
           onChange={(e) => atualizarCampo("sku", e.target.value)}
+          disabled={disabledInputs}
           data-testid="input-edit-sku"
         />
       </div>
@@ -191,6 +209,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.pesoSacolaVarpe || 0}
           onChange={(e) => atualizarCampo("pesoSacolaVarpe", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-pesoSacolaVarpe"
         />
       </div>
@@ -201,6 +220,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.parametroPainel || 0}
           onChange={(e) => atualizarCampo("parametroPainel", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-parametroPainel"
         />
       </div>
@@ -211,6 +231,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.acrisson || 0}
           onChange={(e) => atualizarCampo("acrisson", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-acrisson"
         />
       </div>
@@ -221,6 +242,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.velocidadeLinha || 0}
           onChange={(e) => atualizarCampo("velocidadeLinha", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-velocidadeLinha"
         />
       </div>
@@ -231,6 +253,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.waistPacker || 0}
           onChange={(e) => atualizarCampo("waistPacker", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-waistPacker"
         />
       </div>
@@ -241,6 +264,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.isgElastic || 0}
           onChange={(e) => atualizarCampo("isgElastic", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-isgElastic"
         />
       </div>
@@ -251,6 +275,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.waistElastic || 0}
           onChange={(e) => atualizarCampo("waistElastic", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-waistElastic"
         />
       </div>
@@ -261,6 +286,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.isgSideSeal || 0}
           onChange={(e) => atualizarCampo("isgSideSeal", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-isgSideSeal"
         />
       </div>
@@ -271,6 +297,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.absorventFix || 0}
           onChange={(e) => atualizarCampo("absorventFix", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-absorventFix"
         />
       </div>
@@ -281,6 +308,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.outerEdge || 0}
           onChange={(e) => atualizarCampo("outerEdge", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-outerEdge"
         />
       </div>
@@ -291,6 +319,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.inner || 0}
           onChange={(e) => atualizarCampo("inner", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-inner"
         />
       </div>
@@ -301,6 +330,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.bead || 0}
           onChange={(e) => atualizarCampo("bead", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-bead"
         />
       </div>
@@ -311,6 +341,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.standingGather || 0}
           onChange={(e) => atualizarCampo("standingGather", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-standingGather"
         />
       </div>
@@ -321,6 +352,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.backflimFix || 0}
           onChange={(e) => atualizarCampo("backflimFix", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-backflimFix"
         />
       </div>
@@ -331,6 +363,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.osgSideSeal || 0}
           onChange={(e) => atualizarCampo("osgSideSeal", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-osgSideSeal"
         />
       </div>
@@ -341,6 +374,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.osgElastico || 0}
           onChange={(e) => atualizarCampo("osgElastico", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-osgElastico"
         />
       </div>
@@ -351,6 +385,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.nwSealContLateral || 0}
           onChange={(e) => atualizarCampo("nwSealContLateral", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-nwSealContLateral"
         />
       </div>
@@ -361,6 +396,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.nwSealIntCentRal || 0}
           onChange={(e) => atualizarCampo("nwSealIntCentRal", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-nwSealIntCentRal"
         />
       </div>
@@ -371,6 +407,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.outSideBackFlm || 0}
           onChange={(e) => atualizarCampo("outSideBackFlm", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-outSideBackFlm"
         />
       </div>
@@ -381,6 +418,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.topsheetFix || 0}
           onChange={(e) => atualizarCampo("topsheetFix", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-topsheetFix"
         />
       </div>
@@ -391,6 +429,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.coreWrap || 0}
           onChange={(e) => atualizarCampo("coreWrap", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-coreWrap"
         />
       </div>
@@ -401,6 +440,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.coreWrapSeal || 0}
           onChange={(e) => atualizarCampo("coreWrapSeal", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-coreWrapSeal"
         />
       </div>
@@ -411,6 +451,7 @@ export function FormularioEdicaoGrupo({ grupo, valoresEditados, atualizarCampo }
           step="0.01"
           value={valoresEditados.matFix || 0}
           onChange={(e) => atualizarCampo("matFix", parseFloat(e.target.value) || 0)}
+          disabled={disabledInputs}
           data-testid="input-edit-matFix"
         />
       </div>
